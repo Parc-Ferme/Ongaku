@@ -12,6 +12,9 @@ xcuserdata/
 .build/
 Package.resolved  # Keep this for app projects
 
+#ClientData
+ClientData.swift
+
 # macOS
 .DS_Store
 
