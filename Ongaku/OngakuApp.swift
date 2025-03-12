@@ -10,8 +10,12 @@ import SwiftUI
 @main
 struct OngakuApp: App {
     var body: some Scene {
+
+      let mainViewModel = MainViewModel()
+
         WindowGroup {
-            ContentView()
+          
+          MainView(mainViewModel: mainViewModel)
         }
     }
 }
