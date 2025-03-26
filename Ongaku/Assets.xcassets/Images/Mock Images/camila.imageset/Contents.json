@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "icons8-spotify-64.png",
+      "filename" : "camila-61be4874d8941.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icons8-spotify-1024.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icons8-spotify-1024 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -13,6 +13,7 @@ class AuthViewModel: ObservableObject {
 
   @Published var isLoading: Bool = true
   @Published var isFinishedAuthentication: Bool = false
+  @Published var isShowingWebView: Bool = false
   @Published var authKeyIsAvailable: Bool = false
 
   init(mainViewModel: MainViewModel) {
@@ -49,6 +50,7 @@ class AuthViewModel: ObservableObject {
         self.authKey = authKey
         self.authKeyIsAvailable = true
 
+        print(authKey.accessToken)
         isFinishedAuthentication = true
         mainViewModel.finishedAuthentication(authKey: self.authKey!)
       }

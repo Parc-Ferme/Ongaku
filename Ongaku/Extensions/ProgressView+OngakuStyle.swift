@@ -22,8 +22,8 @@ struct OngakuProgressViewStyle: ProgressViewStyle {
   @State var degrees: Double = 0.0
   @State var centralScale: CGFloat = 1
 
-  var accentColor: Color { discreet ? Color.white.opacity(0.05) : Color.pink }
-  var logoColor: Color { discreet ? Color.white.opacity(0.1) : Color.white }
+  var accentColor: Color { discreet ? Color.white.opacity(0.1) : Color.pink }
+  var logoColor: Color { discreet ? Color.white.opacity(0.3) : Color.white }
 
   func makeBody(configuration: Configuration) -> some View {
 
@@ -36,12 +36,12 @@ struct OngakuProgressViewStyle: ProgressViewStyle {
           .overlay(Image("music")
             .resizable()
             .scaledToFit()
-            .colorMultiply(Color.white)
-            .frame(width: 100 * centralScale * 0.5, height: 100 * centralScale * 0.5)
+            .colorMultiply(logoColor)
+            .frame(width: size * centralScale * 0.15, height: size * centralScale * 15)
           )
           .onAppear {
             withAnimation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
-              centralScale = 1.5
+              centralScale = 2
             }
           }
 
@@ -55,14 +55,14 @@ struct OngakuProgressViewStyle: ProgressViewStyle {
             .stroke(accentColor, style: StrokeStyle(lineWidth: stroke))
             .rotation3DEffect(.degrees(-degrees), axis: (x: 1, y: 1, z: 1))
         }
+        .frame(width: size * 0.4, height: size * 0.4)
         .onAppear {
           withAnimation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
             degrees = 720
           }
         }
-        .frame(width: size, height: size)
-
       }
+      .frame(width: size, height: size)
     }
   }
 }

@@ -11,6 +11,7 @@ struct MainView: View {
 
   @StateObject var mainVM: MainViewModel
   @StateObject var authVM: AuthViewModel
+  @StateObject var homeVM: HomeViewModel
 
   @State var isShowingAuthWebView: Bool = false
 
@@ -18,26 +19,43 @@ struct MainView: View {
 
     _mainVM = StateObject(wrappedValue: mainViewModel)
     _authVM = StateObject(wrappedValue: AuthViewModel(mainViewModel: mainViewModel))
+    _homeVM = StateObject(wrappedValue: HomeViewModel(mainViewModel: mainViewModel))
   }
 
   var body: some View {
 
-    if mainVM.homeScreenIsReady {
-      VStack {
-        Text("Successfully logged in")
-        ProgressView()
-          .withOngakuStyle()
+    if mainVM.ongakuScreenIsReady {
+
+      ZStack{
+
+        switch mainVM.currentPage {
+
+        case .home:
+          OngakuView()
+            .environmentObject(homeVM)
+
+        case .search:
+          Text("Search")
+
+        case .myLibrary:
+          Text("My Library")
+
+        case .premium:
+          Text("Premium")
+        }
+
+        BottomBar(mainVM: mainVM)
       }
     } else {
 
       AuthScreenView(authVM: AuthViewModel(mainViewModel: mainVM))
-        .navigationTitle("")
-        .toolbar(.hidden)
     }
+
   }
 }
 
 #Preview {
+
   @Previewable let mainViewModel = MainViewModel()
   MainView(mainViewModel: mainViewModel)
 }
